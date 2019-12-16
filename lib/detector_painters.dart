@@ -49,11 +49,11 @@ class FaceDetectorPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0
-      ..color = Colors.red;
+      ..strokeWidth = 5.0
+      ..color = Colors.blueAccent;
 
     for (Face face in faces) {
-      canvas.drawRect(
+      canvas.drawOval(
         _scaleRect(
           rect: face.boundingBox,
           imageSize: imageSize,
@@ -80,15 +80,15 @@ class LabelDetectorPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final ui.ParagraphBuilder builder = ui.ParagraphBuilder(
       ui.ParagraphStyle(
-          textAlign: TextAlign.left,
+          textAlign: TextAlign.center,
           fontSize: 23.0,
           textDirection: TextDirection.ltr),
     );
 
-    builder.pushStyle(ui.TextStyle(color: Colors.green));
+    builder.pushStyle(ui.TextStyle(color: Colors.white));
     for (Label label in labels) {
-      builder.addText('Label: ${label.label}, '
-          'Confidence: ${label.confidence.toStringAsFixed(2)}\n');
+      builder.addText('¿Es ${label.label}?, '
+          'Probabilidad: ${label.confidence.toStringAsFixed(2)}\n');
     }
     builder.pop();
 
@@ -107,7 +107,6 @@ class LabelDetectorPainter extends CustomPainter {
   }
 }
 
-// Paints rectangles around all the text in the image.
 class TextDetectorPainter extends CustomPainter {
   TextDetectorPainter(this.imageSize, this.visionText);
 
