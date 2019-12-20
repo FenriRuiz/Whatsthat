@@ -130,15 +130,16 @@ class TextDetectorPainter extends CustomPainter {
     for (TextBlock block in visionText.blocks) {
       for (TextLine line in block.lines) {
         for (TextElement element in line.elements) {
-          paint.color = Colors.green;
+          paint.strokeWidth = 6.0;
+          paint.color = Colors.white;
           canvas.drawRect(_getRect(element), paint);
         }
-
-        paint.color = Colors.yellow;
+        paint.strokeWidth = 4.0;
+        paint.color = Colors.grey;
         canvas.drawRect(_getRect(line), paint);
       }
-
-      paint.color = Colors.red;
+      paint.strokeWidth = 2.0;
+      paint.color = Colors.black;
       canvas.drawRect(_getRect(block), paint);
     }
   }
